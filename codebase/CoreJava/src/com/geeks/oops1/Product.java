@@ -1,4 +1,6 @@
 package com.geeks.oops1;
+
+
 public class Product {
  private int productId;
  private String productName;
@@ -25,6 +27,10 @@ public void setPrice(float price) {
 		this.price = price;
 }
 
-
+public void print() {
+	System.out.println("Product id "+productId);
+	System.out.println("Price : "+price);
+	System.out.println("Prod name : "+productName);
+}
 
 }

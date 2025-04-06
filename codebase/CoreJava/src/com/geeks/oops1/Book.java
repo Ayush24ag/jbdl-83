@@ -15,6 +15,11 @@ public String getGenre() {
 public void setGenre(String genre) {
 	this.genre = genre;
 }
-
+public void print() {
+	//super ==> to access base class members
+	super.print();
+	System.out.println("Authour : "+authour);
+	System.out.println("Genre : "+genre);
+}
 
 }

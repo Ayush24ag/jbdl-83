@@ -15,5 +15,9 @@ public String getRamSize() {
 public void setRamSize(String ramSize) {
 	this.ramSize = ramSize;
 }
-
+public void print() {
+	super.print();
+	System.out.println("Camera : "+camera);
+	System.out.println("Memory : "+ramSize);
+}
 }

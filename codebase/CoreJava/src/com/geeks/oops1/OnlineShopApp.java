@@ -48,7 +48,10 @@ static void printData(Customer cust) {
 	System.out.println("___items in the cart___");
 	Product items[]=cart.getProducts();
 	for(Product p:items) {
-		System.out.println(p.getProductId()+"  "+p.getProductName()+" "+p.getPrice());
+		p.print();
+		System.out.println("--------------------");
+		//System.out.println(p.getProductId()+"  "+p.getProductName()+" "+p.getPrice());
+		//System.out.println(p.getAuthour());
 	}
 	System.out.println("There are "+items.length+" items in the cart");
 }
