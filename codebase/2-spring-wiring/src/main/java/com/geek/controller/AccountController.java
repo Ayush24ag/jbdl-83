@@ -12,4 +12,7 @@ public void setService(AccService service) {
 	System.out.println("setter acc service");
 }
 
+public String creditSal(float amt) {
+	return service.creditService(amt);
+}
 }

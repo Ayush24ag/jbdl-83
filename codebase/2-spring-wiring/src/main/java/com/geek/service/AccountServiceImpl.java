@@ -11,5 +11,9 @@ public void setRep(AccRep rep) {
 	this.rep = rep;
 	System.out.println("setter set Rep");
 }
+@Override
+public String creditService(float amt) {
+	return rep.credit(amt);
+}
 
 }
