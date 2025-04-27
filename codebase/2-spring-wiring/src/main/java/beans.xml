@@ -4,12 +4,16 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	<!-- instructions to the spring container -->
-		<bean id="accController" class="com.geek.controller.AccountController">
+		<bean id="accController" class="com.geek.controller.AccountController" autowire="byName">
+			<!--
 			 <property name="service" ref="accser"></property>
+			 -->
 		</bean>
 		
-		<bean id="accser" class="com.geek.service.AccountServiceImpl">
+		<bean id="service" class="com.geek.service.AccountServiceImpl" autowire="byType">
+				<!--
 			<property name="rep" ref="accrep"></property>
+			 -->
 		</bean>
 		
 		<bean id="accrep" class="com.geek.repo.AccRepImpl">
