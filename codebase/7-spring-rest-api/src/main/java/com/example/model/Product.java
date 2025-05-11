@@ -1,8 +1,15 @@
 package com.example.model;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Product {
  private int prodId;
+ @NotBlank(message = "please enter the prod name")
  private String prodName;
+ @Min(value = 0,message = "prize cannot be negative")
  private float price;
  public Product() {
 	// TODO Auto-generated constructor stub
