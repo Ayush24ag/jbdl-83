@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.example.model.Product;
 @Component
-public class ProductServiceImpl implements ProductService {
+public   class ProductServiceImpl implements ProductService {
 	List<Product> plist= new ArrayList<>();
 	{
 		plist.add(new Product(101,"Laptop",50000));
