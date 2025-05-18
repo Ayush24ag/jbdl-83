@@ -13,13 +13,19 @@ public class Application {
 	public static void main(String[] args) {
 		ApplicationContext ctx=
 		SpringApplication.run(Application.class, args);
-		Customer c=new Customer();
-		c.setCustId(101);
-		c.setCustName("Barath");
-		c.setAddress("Bangalore");
 		CustomerRepository repo=ctx.getBean(CustomerRepository.class);
+	  /*Customer c=new Customer();//NEW
+	  c.setCustId(107);
+		c.setCustName("Rajat");
+		c.setAddress("Delhi");
+		
 		repo.addNewCustomer(c);
+		//DETACHED
+		c.setAddress("Chennai");
 		System.out.println("SAVED !!!!");
-	}
+		//repo.searchById(110);
+		 * */
+		repo.updateAddress(102, "Delhi");
+		}
 
 }
