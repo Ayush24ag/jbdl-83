@@ -1,0 +1,16 @@
+
+
+Aspect  ->Modularized cross cutting concern in abstract manner
+Advice  -> implementation of aspect
+Joinpoint -> the point of  execution of a program (method) Eg. before, After
+PointCut -> A pointcut is an expression which matches the join point.
+
+
+Types of Advice
+--------------
+Before  --> before calling target object
+AfterReturning  --> After calling target object, wont execute if the target obj throws exception
+AfterThrowing --> like a catch block, it executes if the target obj throws exception
+After (finally) ->  after calling target obj, executes in all cases
+Around --> executes before and after calling the target obj.
+
