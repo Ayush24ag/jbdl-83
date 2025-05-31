@@ -12,6 +12,7 @@ import com.example.entity.Genre;
 public interface BookService {
 
 Authour addAuthour(Authour authour);
+Book searchBookById(int bookId);
 Book addBook(BookDto book);
 List<Book> searchByGenre2(Genre genre);
 List<Book> allBooks();
