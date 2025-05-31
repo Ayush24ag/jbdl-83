@@ -6,6 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import com.example.dto.BookDto;
@@ -52,10 +55,10 @@ public class BookServiceImpl implements BookService {
 	public List<Book> allBooks() {
 		return bookRepo.findAll();
 	}
-
 	@Override
 	public Page<Book> allBookswithPagination(int pageNo, int size) {
-		return null;
+		Pageable pageable= PageRequest.of(pageNo, size,Sort.by("bookName"));
+		return bookRepo.findAll(pageable);
 	}
 
 	@Override

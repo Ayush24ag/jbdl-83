@@ -5,12 +5,25 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.example.dto.BorrowBookDto;
+import com.example.entity.Book;
 import com.example.entity.Transaction;
 import com.example.entity.User;
+import com.example.exception.ApplicationException;
+import com.example.repository.BookRepository;
+import com.example.repository.PenalyRepository;
+import com.example.repository.TransactionRepository;
+import com.example.repository.UserRepository;
 @Component
 public class UserServiceImpl implements UserService {
 	@Autowired
-	private com.example.repository.UserRepository userRepo;
+	private UserRepository userRepo;
+	@Autowired
+	private BookRepository bookRepo;
+	@Autowired
+	private PenalyRepository penaltyRepo;
+	@Autowired
+	private TransactionRepository tranRepo;
 	public User addNewUser(User u) {
 		User user=userRepo.save(u);
 		return user;
@@ -18,14 +31,42 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean checkAvailability(int bookId) {
-		// TODO Auto-generated method stub
+		//if the stock of the book is <=0 return false else return true
 		return false;
 	}
 
 	@Override
 	public List<Transaction> chkTransactionByUser(int userId) {
-		// TODO Auto-generated method stub
+		//by the userid get all the transactions....
 		return null;
 	}
 
+	@Override
+	public Book borrowBook(BorrowBookDto borrowDto) {
+		int userId=borrowDto.getUserId();
+		int bookId=borrowDto.getBookId();
+		User user=userRepo.findById(userId).
+				orElseThrow(() -> new ApplicationException("user id not found"));
+		Book book=bookRepo.findById(bookId).orElseThrow(()-> new ApplicationException("Book id not found"));
+		if(book.getStock()>0) {
+		Transaction t= new Transaction();
+		t.setBook(book);
+		t.setUser(user);
+		t.setAmount(book.getCost());
+		t.setStatus("BORROWED");
+		book.setStock(book.getStock()-1);
+		tranRepo.save(t);
+		return bookRepo.save(book);
+		}
+		throw new ApplicationException("sorry Stock is over");
+	}
+
+	@Override
+	public Book returnBook(int tid) {
+		// By Duration object calcualte the diff bw dates (returned date-borrow date)
+		//if its more than 30 for each day 50 rs penalty will be applied
+		// update the transaction table
+		//add record penalty if required 
+		return null;
+	}
 }

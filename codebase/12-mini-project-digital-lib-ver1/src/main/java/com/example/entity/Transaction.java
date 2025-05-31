@@ -2,6 +2,8 @@ package com.example.entity;
 
 import java.time.LocalDate;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -19,6 +21,7 @@ import lombok.NoArgsConstructor;
 public class Transaction {
 	@Id @GeneratedValue
 private int tid;
+@CreationTimestamp	//date of the record insertion....
 private LocalDate borrowedDate;
 private LocalDate returnedDate;
 @ManyToOne @JoinColumn(name="userId")
