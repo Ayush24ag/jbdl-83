@@ -3,6 +3,7 @@ package com.geek.secure.controller;
 import com.geek.secure.config.JwtTokenUtil;
 import com.geek.secure.model.JwtRequest;
 import com.geek.secure.model.JwtResponse;
+import com.geek.secure.model.User;
 import com.geek.secure.model.UserDto;
 import com.geek.secure.service.JwtUserDetailsService;
 
@@ -45,7 +46,8 @@ public class JwtAuthenticationController {
 	@PostMapping("/register")
 	public ResponseEntity<?> saveUser(
 			@RequestBody @Valid UserDto user) throws Exception {
-		return ResponseEntity.ok(userDetailsService.save(user));
+		User userDto= userDetailsService.save(user);
+		return ResponseEntity.ok(userDto);
 	}
 
 	private void authenticate(String username, String password) throws Exception {
