@@ -46,6 +46,7 @@ System.out.println("Token from client : "+requestTokenHeader);
 		if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
 			jwtToken = requestTokenHeader.substring(7);
 			try {
+				//to get the uname from the token
 				username = jwtTokenUtil.getUsernameFromToken(jwtToken);
 				System.out.println("username : "+username);
 			} catch (IllegalArgumentException e) {
@@ -76,7 +77,7 @@ System.out.println("Token from client : "+requestTokenHeader);
 			}
 		}
 		System.out.println("----chain do filtering ....");
-		chain.doFilter(request, response);
+		chain.doFilter(request, response); //chain (invoke) another filter
 	}
 
 	

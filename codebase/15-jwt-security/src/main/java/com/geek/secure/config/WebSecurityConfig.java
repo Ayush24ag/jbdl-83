@@ -29,6 +29,7 @@ public class WebSecurityConfig/* extends WebSecurityConfigurerAdapter*/ {
 	//private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
 	@Autowired
+	//must implements UserDetailsService(inbuild class) 
 	private UserDetailsService jwtUserDetailsService;
 
 	@Autowired
