@@ -42,6 +42,7 @@ public class BookServiceImpl implements BookService {
 //	  book.setGenre(bookDto.getGenre());
 //	  book.setPublishedDate(bookDto.getPublishedDate());
 	  BeanUtils.copyProperties(bookDto, book);
+	  
 	  book.setAuthourId(authour);
 	 return bookRepo.save(book);
 	}

@@ -71,6 +71,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	//used to return the borrowed book
+	//returns book obj with the updated stock(increment by 1)
+	//update the status as "Returned" in Transaction obj
+	//if the returned date is more than days of borrowed rate, penalty will be imposed
 	public Book returnBook(int tid) {
 		// By Duration object calcualte the diff bw dates (returned date-borrow date)
 		//if its more than 30 for each day 50 rs penalty will be applied
@@ -99,7 +103,6 @@ public class UserServiceImpl implements UserService {
 	    	t.setReturnedDate(returnedDate);
 	    	t.setStatus("RETURNED");
 	    	bookRepo.save(book);
-	  
 	    tranRepo.save(t);
 	    }
 	    else throw new ApplicationException("Book Already returned");
