@@ -1,0 +1,15 @@
+zookeeper -> to manager 1 or more kafka brokers
+zookeeper-server-start.bat config\zookeeper.properties
+
+to start kafka-server 
+kafka-server-start.bat config\server.properties
+
+
+to create topic 
+kafka-topics --create --topic helloTopic1 --bootstrap-server localhost:9092
+
+to send msgs
+kafka-console-producer --topic helloTopic1 --bootstrap-server localhost:9092
+
+to receive msgs
+kafka-console-consumer --topic helloTopic1  --from-beginning --bootstrap-server localhost:9092
