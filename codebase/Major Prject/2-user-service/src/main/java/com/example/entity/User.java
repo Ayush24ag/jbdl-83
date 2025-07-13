@@ -24,7 +24,7 @@ private String userName;
 	@NotNull(message = "password cant blank/null")
 	@NotBlank(message = "password cant blank/null")
 	// @Length (value =8,message = "password have atleast 8 chars")
-	@JsonIgnore
+	//@JsonIgnore
 private String password;
 	@Min(value = 1000,message = "phone number min val not sufficient")
 private int phoneNo;

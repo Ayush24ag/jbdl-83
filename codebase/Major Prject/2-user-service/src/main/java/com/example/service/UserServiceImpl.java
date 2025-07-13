@@ -1,8 +1,10 @@
 package com.example.service;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.dto.UserDto;
 import com.example.entity.User;
 import com.example.exception.ApplicationException;
 import com.example.repository.UserRepository;
@@ -10,11 +12,17 @@ import com.example.repository.UserRepository;
 public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository userRepo;
+	@Autowired
+	private MessageSender msgSender;
 	public User registerUser(User user) {
 		User existingUser=userRepo.findByUserName(user.getUserName());
+	
 		if(existingUser!=null) {
 			throw new ApplicationException("User already present");
 		}
+		UserDto userDto= new UserDto();
+		BeanUtils.copyProperties(user, userDto);
+		msgSender.sendNotification(userDto);
 		return userRepo.save(user);
 	}
 	public User searchById(int id) {
