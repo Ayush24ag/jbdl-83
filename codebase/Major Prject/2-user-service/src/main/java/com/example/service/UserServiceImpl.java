@@ -1,5 +1,7 @@
 package com.example.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +12,8 @@ import com.example.exception.ApplicationException;
 import com.example.repository.UserRepository;
 @Service
 public class UserServiceImpl implements UserService {
+	
+	Logger log=LoggerFactory.getLogger(UserServiceImpl.class);
 	@Autowired
 	private UserRepository userRepo;
 	@Autowired
@@ -26,6 +30,7 @@ public class UserServiceImpl implements UserService {
 		return userRepo.save(user);
 	}
 	public User searchById(int id) {
+		log.info("searching the user {}",id);
 		//why optional ????
 		return userRepo.findById(id).orElseThrow(()-> new ApplicationException("User not found"));
 	}
